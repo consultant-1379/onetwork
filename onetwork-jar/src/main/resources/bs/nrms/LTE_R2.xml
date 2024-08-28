@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gnm type = "LTE">
+
+ <cellpattern>
+     <cellnumber>4</cellnumber>
+ </cellpattern>
+
+  <mimentry>
+      <mimname>LTE ERBS E1200-V2</mimname>
+      <mimpercentage>100.0</mimpercentage>
+  </mimentry>
+</gnm>

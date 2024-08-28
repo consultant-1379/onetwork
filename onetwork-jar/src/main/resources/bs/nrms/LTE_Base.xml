@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gnm type = "LTE">
+  <fdd_frequencies>
+      <!--__________EUTran Network_________-->
+      <startingfreq>1</startingfreq>
+      <totalEUtranfreqsPerCell>4</totalEUtranfreqsPerCell>
+      <totalExternalENodeBFunctionsPerNode>30</totalExternalENodeBFunctionsPerNode>
+      <maxEUtranFreqRealtionsValuePerCell>4</maxEUtranFreqRealtionsValuePerCell>
+      <startingEUtranCellRelations>1</startingEUtranCellRelations>
+      <totalEUtranCellRelations>38</totalEUtranCellRelations>
+
+      <!--___________UTran Network_________-->
+      <totalUtranFreqsPerCell>1</totalUtranFreqsPerCell>
+      <UtranFreqValue>10563</UtranFreqValue>
+      <totalExternalUtranCellFDDPerCell>4</totalExternalUtranCellFDDPerCell>
+      <totalUtranCellRelations>4</totalUtranCellRelations>
+  </fdd_frequencies>
+  <tdd_frequencies>
+      <startingfreq>36005</startingfreq>
+      <totalEUtranfreqs>4</totalEUtranfreqs>
+  </tdd_frequencies>
+</gnm>

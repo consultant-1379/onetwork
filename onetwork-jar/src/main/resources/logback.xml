@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+  <property name="DEV_HOME" value="/tmp"/>
+
+  <if condition='property("HOSTNAME").contains("atclvm12")'>
+    <then>
+      <property name="DEV_HOME" value="/tmp"/>
+    </then>
+    <else condition='property("HOSTNAME").contains("lmera.ericsson.se")'>
+      <property name="DEV_HOME" value="$WORKSPACE"/>
+    </else>
+  </if>
+
+  <if condition='property("HOSTNAME").contains("netsimv006-04")'>
+    <then>
+      <property name="DEV_HOME" value="/tmp"/>
+    </then>
+  </if>
+
+  <if condition='property("HOSTNAME").contains("IE")'>
+    <then>
+      <property name="DEV_HOME" value="${user.dir}/logs"/>
+    </then>
+  </if>
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <filter class="ch.qos.logback.classic.filter.LevelFilter">
+    </filter>
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <Pattern>
+        %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+      </Pattern>
+    </layout>
+  </appender>
+
+  <appender name="INFO-LOG" class="ch.qos.logback.core.FileAppender">
+    <append>false</append>
+    <filter class="ch.qos.logback.classic.filter.LevelFilter">
+      <level>INFO</level>
+      <onMatch>ACCEPT</onMatch>
+      <onMismatch>DENY</onMismatch>
+    </filter>
+    <file>${DEV_HOME}/1Network_info.log</file>
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <Pattern>
+        %msg%n
+      </Pattern>
+    </encoder>
+  </appender>
+
+  <appender name="LOG" class="ch.qos.logback.core.FileAppender">
+    <append>false</append>
+    <filter class="ch.qos.logback.classic.filter.LevelFilter">
+    </filter>
+    <file>${DEV_HOME}/1Network.log</file>
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <Pattern>
+        %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+      </Pattern>
+    </encoder>
+  </appender>
+
+  <root level="info">
+    <appender-ref ref="INFO-LOG"/>
+     <appender-ref ref="LOG"/>
+    <appender-ref ref="STDOUT"/>
+  </root>
+  <root level="error">
+    <appender-ref ref="LOG"/>
+    <appender-ref ref="STDOUT"/>
+  </root>
+  <root level="debug">
+    <appender-ref ref="LOG"/>
+    <appender-ref ref="STDOUT"/>
+  </root>
+</configuration>

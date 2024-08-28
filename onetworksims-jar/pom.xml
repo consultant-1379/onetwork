@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>onetwork</artifactId>
+    <groupId>com.ericsson.ci.simnet</groupId>
+    <version>1.0.137-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>onetworksims-jar</artifactId>
+  <packaging>war</packaging>
+  <name>onetworksims JAR module</name>
+  <properties>
+      <publish_artifact>false</publish_artifact>
+       <media.category>service</media.category>
+  </properties>
+  <dependencies>
+    <!-- Testing dependencies start -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version><!--$NO-MVN-MAN-VER$ -->
+    </dependency>
+    <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-all</artifactId>
+        <version>1.9.5</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.powermock</groupId>
+        <artifactId>powermock-module-junit4</artifactId>
+        <version>1.5</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.jcraft</groupId>
+      <artifactId>jsch</artifactId>
+      <version>0.1.46</version>
+    </dependency>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.16</version>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.1.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.janino</groupId>
+      <artifactId>janino</artifactId>
+      <version>2.7.8</version>
+    </dependency>
+    <!-- Testing dependencies end -->
+
+    <!-- mom parser dependency start -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.4</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-collections</groupId>
+      <artifactId>commons-collections</artifactId>
+      <version>3.2.1</version>
+    </dependency>
+    <!-- mom parser dependency end -->
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>com.springsource.org.apache.commons.net</artifactId>
+      <version>2.0.0</version>
+   </dependency>
+   <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>6.8.8</version>
+      <scope>test</scope>
+    </dependency>
+     <!-- JSON -->
+     <dependency>
+        <groupId>org.codehaus.jettison</groupId>
+        <artifactId>jettison</artifactId>
+        <version>1.3.7</version>
+     </dependency>
+    <dependency>
+      <groupId>javax.websocket</groupId>
+      <artifactId>javax.websocket-api</artifactId>
+      <version>1.1</version>
+      <scope>provided</scope>
+  </dependency>
+    <!-- Jersey -->
+    <dependency>
+      <groupId>com.sun.jersey</groupId>
+      <artifactId>jersey-server</artifactId>
+      <version>1.8</version>
+    </dependency>
+  </dependencies>
+  <build>
+   <finalName>onetwork-jar</finalName>
+    <plugins>
+      <!-- mom parser plugin start -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.6</version>
+        <configuration>
+          <warSourceDirectory>WebContent</warSourceDirectory>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.jvnet.jaxb2.maven2</groupId>
+        <artifactId>maven-jaxb2-plugin</artifactId>
+        <version>0.12.3</version>
+        <executions>
+          <execution>
+            <id>xjc-mp</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <schemaLanguage>DTD</schemaLanguage>
+              <schemaIncludes>
+                <include>mp.dtd</include>
+              </schemaIncludes>
+              <generatePackage>com.ericsson.de.onetwork.dms.momparser.schema.mpdtd</generatePackage>
+              <generateDirectory>${project.basedir}/src/main/java</generateDirectory>
+              <schemaDirectory>${project.basedir}/src/main/resources/schema</schemaDirectory>
+              <overWrite>false</overWrite>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>xjc-mom-parser-config</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <schemaLanguage>XMLSCHEMA</schemaLanguage>
+              <schemaIncludes>
+                <include>MomParserConfig.xsd</include>
+              </schemaIncludes>
+              <generatePackage>com.ericsson.de.onetwork.dms.momparser.schema.config</generatePackage>
+              <generateDirectory>${project.basedir}/src/main/java</generateDirectory>
+              <schemaDirectory>${project.basedir}/src/main/resources/schema</schemaDirectory>
+              <overWrite>false</overWrite>
+            </configuration>
+          </execution>
+        </executions>
+        <configuration>
+          <forceRegenerate>false</forceRegenerate>
+        </configuration>
+      </plugin>
+      <!-- mom parser plugin end -->
+    </plugins>
+
+  </build>
+</project>

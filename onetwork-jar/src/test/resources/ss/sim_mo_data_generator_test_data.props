@@ -1,0 +1,13 @@
+## STATIC TESTING DATA FOR UNIT TESTS ##
+
+SingleCreateMoScriptWithoutAttr=CREATE ( parent "" identity "" moType "" exception none nrOfAttributes 0 )
+
+SingleCreateMoScriptWithUserLabelAttr=CREATE ( parent "" identity "" moType "" exception none nrOfAttributes 1 userLabel String fake-user-label )
+
+SingleCreateMoScriptWithStructArrayAttr=CREATE ( parent "" identity "" moType "" exception none nrOfAttributes 2 userLabel String "" healthCheckSchedule Array Struct 1 nrOfElements 2 time String tttime1 weekday String wwwekday1 )
+
+SingleCreateMoScriptWithStructAttr=CREATE ( parent "" identity "" moType "" exception none nrOfAttributes 1 healthCheckStruct Struct nrOfElements 3 healthCheckResultCode Integer 2 message String mmmessage startTime String ssstartTime )
+
+SingleCreateMoScriptWithArrayAttr=CREATE ( parent "" identity "" moType "" exception none nrOfAttributes 1 acBarringForSpecialAC Array Boolean 4 false false false false )
+
+SingleCreateMoScriptWithFakeValuesWithoutAttr=CREATE ( parent fake-parent=1 identity fake-name moType fake-type exception none nrOfAttributes 0 )

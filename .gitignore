@@ -1,0 +1,6 @@
+.project
+
+.settings
+
+# 1Network log files
+logs/

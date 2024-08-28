@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+
+  <!--Please Use the latest version of integration pom.xml or the one you
+    want to reference to -->
+  <parent>
+    <groupId>com.ericsson.cds</groupId>
+    <artifactId>integration</artifactId>
+    <version>2.0.18</version>
+  </parent>
+
+  <groupId>com.ericsson.ci.simnet</groupId>
+  <artifactId>onetwork</artifactId>
+  <version>1.0.151-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>[${project.artifactId}] JEE6 Project</name>
+  <properties>
+    <product>1Network</product>
+    <delivery.drop>15.13</delivery.drop>
+    <java.version>1.7</java.version>
+    <jersey.version>1.9</jersey.version>
+    <media.category>service</media.category>
+    <URI>https://cifwk-oss.lmera.ericsson.se</URI>
+    <releaseRepoName>simnet</releaseRepoName>
+    <zipArtifactId>ERIConetworksims_CXP9028429</zipArtifactId>
+    <packageM2Type>zip</packageM2Type>
+    <type3pp>False</type3pp>
+  </properties>
+
+  <scm>
+    <developerConnection>
+            scm:git:ssh://gerrit.ericsson.se:29418/OSS/com.ericsson.ci.simnet/onetwork
+        </developerConnection>
+    <tag>onetwork-1.0.69</tag>
+  </scm>
+  <!--Profiles for site documentation -->
+
+  <!--Profile to deploy latest site -->
+  <profiles>
+    <profile>
+      <id>site_latest</id>
+      <distributionManagement>
+        <site>
+          <id>site</id>
+          <name>Site</name>
+          <url>${site.url}/onetwork/latest</url>
+        </site>
+      </distributionManagement>
+    </profile>
+
+    <!--Profile to stage site for review -->
+
+    <profile>
+      <id>site_review</id>
+      <distributionManagement>
+        <site>
+          <id>site</id>
+          <name>Site</name>
+          <url>${site.url}</url>
+        </site>
+      </distributionManagement>
+    </profile>
+
+  </profiles>
+
+  <!--Deployment of versioned documentation -->
+  <distributionManagement>
+    <site>
+      <id>site</id>
+      <name>Site</name>
+      <url>${site.url}/onetwork/${project.version}</url>
+    </site>
+  </distributionManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.tomcat.maven</groupId>
+          <artifactId>tomcat7-maven-plugin</artifactId>
+          <version>2.2</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <modules>
+    <module>ERIConetwork_CXP9026027</module>
+    <module>onetwork-jar</module>
+    <module>ERIConetworksims_CXP9028429</module>
+    <module>onetwork-web</module>
+  </modules>
+</project>

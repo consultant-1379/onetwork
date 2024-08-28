@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MomParserConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/MomParserConfig.xsd">
+  <platformType>ecim</platformType>
+  <nodeType>sgsn</nodeType>
+  <input>
+    <mpDtdURI>./src/main/resources/schema/mp.dtd</mpDtdURI>
+    <momURI>./src/main/resources/sgsn_nodes/SGSN_15B-WPP-V5</momURI>
+  </input>
+  <output>
+    <momPool>./target/outdir</momPool>
+    <version>v5</version>
+  </output>
+</MomParserConfig>

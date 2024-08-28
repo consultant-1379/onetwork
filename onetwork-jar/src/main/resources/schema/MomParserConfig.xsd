@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="MomParserConfig">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="platformType" type="xs:string"></xs:element>
+        <xs:element name="nodeType" type="xs:string"></xs:element>
+        <xs:element name="input">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="mpDtdURI" type="xs:string"></xs:element>
+              <xs:element name="momURI" type="xs:string">
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="output">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="momPool" type="xs:string"></xs:element>
+              <xs:element name="version" type="xs:string"></xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,22 @@
+## STATIC TESTING DATA FOR UNIT TESTS ##
+
+##  createSimMml() Method Data ##
+createSimMml_DataLTE=.deletesimulation LTEF1101x12-GEN-LTE01 force .new simulation LTEF1101x12-GEN-LTE01
+createSimMml_DataCORE=.deletesimulation CORE15A-WPP-V4x10-GEN-CORE01 force .new simulation CORE15A-WPP-V4x10-GEN-CORE01
+
+
+##  createSim() Method Data ##
+createSaveAndCompressSimMml_Data=.select network .stop -parallel .saveandcompress force nopmdata
+
+##  createNesMml() Method Data ##
+createNesMml_DataLTE=.open LTEF1101x12-GEN-LTE01 .createne checkport IIOP_PROT .set preference positions 5 .new simne -auto 12 LTE01ERBS 01 .set netype LTE ERBS .set port IIOP_PROT .createne subaddr 1 subaddr no_value .set save
+createNesMml_DataCORE=.open CORE15A-WPP-V4x10-GEN-CORE01 .createne checkport NETCONF_PROT_SSH .set preference positions 5 .new simne -auto 10 CORE01SGSN 01 .set netype WPP SGSN .set port NETCONF_PROT_SSH .createne subaddr 1 subaddr no_value .set save
+
+##  createKertayleMml() Method Data ##
+createKertayleMml_Data=.selectregexp simne LTE01ERBS00001 kertayle:file="LTE01ERBS0001.mo";
+
+##  createStartNetworkMml() Method Data ##
+createStartNetworkMml_Data=.select network .start -parallel useattributecharacteristics:switch="off";
+
+##  createSimMml() Method Data ##
+createSimMml_Data=.deletesimulation LTEF1101x12-GEN-LTE01 force .new simulation LTEF1101x12-GEN-LTE01

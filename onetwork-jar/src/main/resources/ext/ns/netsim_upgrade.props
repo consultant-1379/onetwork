@@ -1,0 +1,42 @@
+## NETSIM UPGRADE CONFIGURATION ##
+
+# Server Details #
+#
+onenetwork_netsim_build_server=netsimv006-04.athtem.eei.ericsson.se
+onenetwork_netsim_build_server_user=root
+onenetwork_netsim_build_server_pwd=shroot
+
+# Netsim Upgrade Cmd Details #
+#
+#-Common Usage Examples:
+#    $ master.sh -v R28A     # installs netsim version of R28A forcefully, plus verified patches and license, 
+#                            # deletes existing other netsim versions from the system
+#    $ master.sh -r N -d no  # installs latest netsim version available forcefully, plus verified patches and license,
+#                            # keeps existing other netsim versions in the system
+#    $ master.sh -r N -f no -p no
+#
+#-Usage: $0 -m mount_point -h host_name -f yes/no -d yes/no -v netsim_version or -r netsim_release_name -p yes/no -l yes/no -c yes/no
+#    MANDATORY
+#    -v: specifies version of netsim e.g. N, N_1, N_2
+#    OR
+#    -r: specifies release of netsim you want to install e.g. R28A, R27J etc...
+#    OPTIONALS
+#    -f: yes/no (default yes)
+#        yes-> installs netsim forcefully
+#        no-> leaves existing netsim version if requested installation exist
+#    -d: yes/no (default yes)
+#        yes-> deletes existing netsim versions
+#        no-> keeps other existing netsim versions
+#    -p  yes/no (default yes)
+#        yes-> installs verified patches only
+#        no-> does not install any patches
+#    -l: yes/no (default yes)
+#        yes-> installs netsim license
+#        no-> doesn not install netsim license
+#    -m: mountpoint-obsolute path where the scripts executed
+#    -h: hostname, e.g. netsimlin271
+#    -c: yes/no (default no)
+#        yes-> cleans netsim
+#        no -> does not clean netsim
+#
+simdep_netsim_upgrade_cmd=master.sh -r N_1 -p yes -d no -f no -c no

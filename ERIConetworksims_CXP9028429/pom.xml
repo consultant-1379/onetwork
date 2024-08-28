@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>onetwork</artifactId>
+    <groupId>com.ericsson.ci.simnet</groupId>
+    <version>1.0.151-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>ERIConetworksims_CXP9038429</artifactId>
+  <packaging>${rpm.packaging}</packaging>
+  <name>ERIConetworksims_CXP9038429 CXP module</name>
+
+  <properties>
+    <publish_artifact>false</publish_artifact>
+    <com.ericsson.oss.rpm.architecture>noarch</com.ericsson.oss.rpm.architecture>
+    <rpm-root>opt</rpm-root>
+    <comp-name>ericsson</comp-name>
+    <install-path>com.ericsson.oss.ci-archetypes</install-path>
+    <install-path>com.ericsson.ci.simnet.onetwork</install-path>
+    <media.category>service</media.category>
+    <product>1Network</product>
+    <delivery.drop>15.13</delivery.drop>
+    <media.category>service</media.category>
+    <URI>https://cifwk-oss.lmera.ericsson.se</URI>
+    <releaseRepoName>simnet</releaseRepoName>
+    <packageM2Type>zip</packageM2Type>
+    <type3pp>False</type3pp>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>1.9.1</version>
+        <executions>
+          <execution>
+            <id>attach-artifacts</id>
+            <phase>package</phase>
+            <goals>
+              <goal>attach-artifact</goal>
+            </goals>
+            <configuration>
+              <artifacts>
+                <artifact>
+                  <file>${basedir}/1NETWORK_DEMO_SIMS.zip</file>
+                  <type>zip</type>
+                </artifact>
+              </artifacts>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>exec-maven-plugin</artifactId>
+            <groupId>org.codehaus.mojo</groupId>
+            <version>1.2</version>
+            <executions>
+              <execution>
+                <id>publish-to-portal</id>
+                <phase>deploy</phase>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <executable>wget</executable>
+              <arguments>
+                <argument>-q</argument>
+                <argument>-O</argument>
+                <argument>-</argument>
+                <argument>--no-check-certificate</argument>
+                <argument>--post-data=packageName=${project.artifactId}&amp;version=${project.version}&amp;groupId=${project.groupId}&amp;signum=${user}&amp;m2Type=${packageM2Type}&amp;intendedDrop=${delivery.drop}&amp;product=${product}&amp;repository=${releaseRepoName}&amp;mediaCategory=${media.category}&amp;type3pp=${type3pp}</argument>
+                <argument>https://cifwk-oss.lmera.ericsson.se/cifwkPackageImport/</argument>
+              </arguments>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+</project>

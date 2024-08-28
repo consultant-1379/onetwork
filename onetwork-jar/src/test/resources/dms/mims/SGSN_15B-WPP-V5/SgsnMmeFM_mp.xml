@@ -1,0 +1,1192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Copyright (c) 2015 Ericsson AB. 
+	All rights reserved 
+
+	DX ECIM Tool-chain generated this file on May 8, 2015 7:24:18 AM using:
+	* com.ericsson.ecim.m2m 2.11.3.201409041218
+	* com.ericsson.ecim.dsl 2.11.3.201409041218
+	* com.ericsson.ecim.edm 2.11.3.201409041218
+--><!DOCTYPE models SYSTEM "mp.dtd">
+<models>
+  <dtdVersion>G</dtdVersion>
+  <momMetaData>
+    <momTitle>ECIM_FM</momTitle>
+    <momSubTitle>ECIM_FM</momSubTitle>
+    <momIdentity>
+      <docNum>0</docNum>
+      <docLang>English</docLang>
+      <docRev>A</docRev>
+      <docDate>2013-05-28</docDate>
+    </momIdentity>
+    <createdBy>
+      <signature>eraasc</signature>
+    </createdBy>
+  </momMetaData>
+  <mim author="EAB/IBA/TN Johan Landtmansson" contact="EAB/IBA/TN Johan Landtmansson" correction="0" date="2015-02-20" docNo="" name="SgsnMmeFM" namespace="urn:com:ericsson:ecim:SgsnMmeFM" namespacePrefix="sgsnmmefm" organization="EAB/IBA/TN " release="1" revision="" version="4">
+    <description>SGSN-MME implementatino of the ECIM FM model fragment.</description>
+    <domainExtension domain="ECIM">
+      <extension name="ecimMomName" value="ECIM_FM"/>
+      <extension name="ecimMomVersion" value="4"/>
+      <extension name="ecimMomRelease" value="0"/>
+      <extension name="ecimMomCorrection" value="0"/>
+    </domainExtension>
+    <implements correction="0" name="ECIM_FM" release="0" version="4"/>
+    <struct name="AdditionalInformation">
+      <description>A data structures that contains two items of information, an identifier and a problem description.</description>
+      <structMember name="name">
+        <description>The identifier.</description>
+        <domainExtension domain="SgsnMme">
+          <extension name="cliOperand" value="name"/>
+        </domainExtension>
+        <string/>
+      </structMember>
+      <structMember name="value">
+        <description>The value or description associated with the identifier.</description>
+        <domainExtension domain="SgsnMme">
+          <extension name="cliOperand" value="val"/>
+        </domainExtension>
+        <string/>
+      </structMember>
+    </struct>
+    <enum name="EventType">
+      <description>The general category for the Alarm Type.
+The allowed values are defined by ITU-T X.733 and X.736.</description>
+      <enumMember name="OTHER">
+        <description>Defined by ITU-T X.733 and X.736.</description>
+        <value>1</value>
+      </enumMember>
+      <enumMember name="COMMUNICATIONSALARM">
+        <description>Defined by ITU-T X.733 and X.736.</description>
+        <value>2</value>
+      </enumMember>
+      <enumMember name="QUALITYOFSERVICEALARM">
+        <description>Defined by ITU-T X.733 and X.736.</description>
+        <value>3</value>
+      </enumMember>
+      <enumMember name="PROCESSINGERRORALARM">
+        <description>Defined by ITU-T X.733 and X.736.</description>
+        <value>4</value>
+      </enumMember>
+      <enumMember name="EQUIPMENTALARM">
+        <description>Defined by ITU-T X.733 and X.736.</description>
+        <value>5</value>
+      </enumMember>
+      <enumMember name="ENVIRONMENTALALARM">
+        <description>Defined by ITU-T X.733 and X.736.</description>
+        <value>6</value>
+      </enumMember>
+      <enumMember name="INTEGRITYVIOLATION">
+        <description>Defined by ITU-T X.733 and X.736.</description>
+        <value>7</value>
+      </enumMember>
+      <enumMember name="OPERATIONALVIOLATION">
+        <description>Defined by ITU-T X.733 and X.736.</description>
+        <value>8</value>
+      </enumMember>
+      <enumMember name="PHYSICALVIOLATION">
+        <description>Defined by ITU-T X.733 and X.736.</description>
+        <value>9</value>
+      </enumMember>
+      <enumMember name="SECURITYSERVICEORMECHANISMVIOLATION">
+        <description>Defined by ITU-T X.733 and X.736.</description>
+        <value>10</value>
+      </enumMember>
+      <enumMember name="TIMEDOMAINVIOLATION">
+        <description>Defined by ITU-T X.733 and X.736.</description>
+        <value>11</value>
+      </enumMember>
+    </enum>
+    <enum name="SeverityLevel">
+      <description>The possible alarm serverities.
+The values are aligned to the ERICSSON-ALARM-MIB which is compliant with the IETF understanding of the ITU X.733.&#13;
+SnmpItuAlarmPercSeverity:&#13;
+DESCRIPTION "The perceived severity of the alarm as specified in [X.733] and [X.736].&#13;
+SYNTAX INTEGER {cleared (1), critical (3), major (4), minor (5), warning (6)}&#13;
+Note: ERICSSON-ALARM-MIB does not support severity indeterminate (2)</description>
+      <enumMember name="CRITICAL">
+        <description>Aligned with ERICSSON-ALARM-MIB numbering.</description>
+        <value>3</value>
+      </enumMember>
+      <enumMember name="MAJOR">
+        <description>Aligned with ERICSSON-ALARM-MIB numbering.</description>
+        <value>4</value>
+      </enumMember>
+      <enumMember name="MINOR">
+        <description>Aligned with ERICSSON-ALARM-MIB numbering.</description>
+        <value>5</value>
+      </enumMember>
+      <enumMember name="WARNING">
+        <description>Aligned with ERICSSON-ALARM-MIB numbering.</description>
+        <value>6</value>
+      </enumMember>
+    </enum>
+    <derivedDataType name="DateTime">
+      <description>DateTime in format YYYY-MM-DDThh:mm:ss.SSSZ .</description>
+      <domainExtension domain="ECIM">
+        <extension name="originatingMimRelease" value="6"/>
+        <extension name="originatingMimName" value="ECIM_CommonLibrary"/>
+        <extension name="originatingMimVersion" value="1"/>
+      </domainExtension>
+      <baseType>
+        <string>
+          <lengthRange>
+            <min>19</min>
+            <max>31</max>
+          </lengthRange>
+          <validValues>^([0-9]{4})-(1[0-2]|0[1-9])-(0[1-9]|[1|2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])([\.][0-9]+){0,1}(([\+|\-](0[0-9]|1[0-9]|2[0-4])(:[0-5][0-9])?)|(Z)?)$</validValues>
+        </string>
+      </baseType>
+    </derivedDataType>
+    <derivedDataType name="ProbableCause">
+      <description>Probable cause as specified in ITU and ETSI recommendations.
+The ITU recommendations are M.3100, X.733 and X.736 and the ETSI recommendation is GSM 12.11. &#13;
+</description>
+      <baseType>
+        <uint32/>
+      </baseType>
+    </derivedDataType>
+    <derivedDataType name="Hardware">
+      <description>.</description>
+      <domainExtension domain="ECIM">
+        <extension name="originatingMimRelease" value="3"/>
+        <extension name="originatingMimName" value="NodeParameters"/>
+        <extension name="originatingMimVersion" value="1"/>
+      </domainExtension>
+      <domainExtension domain="SgsnMme">
+        <extension name="isEnumString" value="true"/>
+      </domainExtension>
+      <baseType>
+        <string>
+          <lengthRange>
+            <min>3</min>
+            <max>6</max>
+          </lengthRange>
+          <validValues>mkvi|mkvi+|mkviii|mkx|virtual</validValues>
+        </string>
+      </baseType>
+    </derivedDataType>
+    <class name="Fm">
+      <description>The root MOC of the Fault Management branch.</description>
+      <domainExtension domain="SgsnMme">
+        <extension name="accessType" value="INHERIT"/>
+        <extension name="smTag" value="INHERIT"/>
+        <extension name="isVolatile" value="false"/>
+        <extension name="isInternal" value="false"/>
+        <extension name="isAssociation" value="false"/>
+      </domainExtension>
+      <systemCreated/>
+      <root/>
+      <attribute name="fmId">
+        <description>The value component of the RDN.</description>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="fmid"/>
+        </domainExtension>
+        <mandatory/>
+        <noNotification/>
+        <restricted/>
+        <key/>
+        <dataType>
+          <string/>
+        </dataType>
+      </attribute>
+      <attribute name="lastSequenceNo">
+        <description>The last used sequence number for an alarm state change notification.
+The sequence numbers are consecutive. With this attribute, an external system can determine if a resynchronization operation is needed, such as following a loss and restore of a communications link.  </description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="true"/>
+          <extension name="cliOperand" value="lsn"/>
+        </domainExtension>
+        <noNotification/>
+        <nonPersistent/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <uint64/>
+        </dataType>
+      </attribute>
+      <attribute name="sumCritical">
+        <description>Shows the number of active alarms with perceived severity 'critical'.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="true"/>
+          <extension name="cliOperand" value="sc"/>
+        </domainExtension>
+        <noNotification/>
+        <nonPersistent/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <uint32/>
+        </dataType>
+      </attribute>
+      <attribute name="sumMajor">
+        <description>Shows the number of active alarms with perceived severity ‘major’.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="true"/>
+          <extension name="cliOperand" value="sm"/>
+        </domainExtension>
+        <noNotification/>
+        <nonPersistent/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <uint32/>
+        </dataType>
+      </attribute>
+      <attribute name="sumMinor">
+        <description>Shows the number of active alarms with perceived severity ‘minor’.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="true"/>
+          <extension name="cliOperand" value="smi"/>
+        </domainExtension>
+        <noNotification/>
+        <nonPersistent/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <uint32/>
+        </dataType>
+      </attribute>
+      <attribute name="sumWarning">
+        <description>Shows the number of active alarms with perceived severity ‘warning’.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="true"/>
+          <extension name="cliOperand" value="sw"/>
+        </domainExtension>
+        <noNotification/>
+        <nonPersistent/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <uint32/>
+        </dataType>
+      </attribute>
+      <attribute name="totalActive">
+        <description>Shows the total number of currently active alarms.
+This corresponds to the the total number of instantiated FmAlarm objects.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="true"/>
+          <extension name="cliOperand" value="ta"/>
+        </domainExtension>
+        <noNotification/>
+        <nonPersistent/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <uint32/>
+        </dataType>
+      </attribute>
+      <attribute name="lastChanged">
+        <description>The timestamp of when any alarm was last changed.
+With this attribute, an external system can determine if a resynchronization operation is needed, such as following a loss and restore of a communications link.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="true"/>
+          <extension name="cliOperand" value="lc"/>
+        </domainExtension>
+        <noNotification/>
+        <nonPersistent/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <derivedDataTypeRef name="DateTime">
+            <mimName>SgsnMmeFM</mimName>
+          </derivedDataTypeRef>
+        </dataType>
+      </attribute>
+      <attribute name="heartbeatInterval">
+        <description>The interval in seconds, with which a heartbeat notification is sent to all alarm consumers.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="hi"/>
+        </domainExtension>
+        <isNillable/>
+        <dataType>
+          <uint32>
+            <defaultValue>60</defaultValue>
+          </uint32>
+        </dataType>
+      </attribute>
+    </class>
+    <class name="FmAlarmModel">
+      <description>This is a container for grouping FM alarm types.
+</description>
+      <domainExtension domain="SgsnMme">
+        <extension name="accessType" value="INHERIT"/>
+        <extension name="smTag" value="INHERIT"/>
+        <extension name="isVolatile" value="false"/>
+        <extension name="isInternal" value="false"/>
+        <extension name="isAssociation" value="false"/>
+      </domainExtension>
+      <systemCreated/>
+      <attribute name="fmAlarmModelId">
+        <description>The value component of the RDN.</description>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="fami"/>
+        </domainExtension>
+        <mandatory/>
+        <noNotification/>
+        <restricted/>
+        <key/>
+        <dataType>
+          <string/>
+        </dataType>
+      </attribute>
+    </class>
+    <class name="FmAlarmType">
+      <description>A specific kind of alarm that can be reported, for example "power failure".
+In an X.733 context it maps to event type, probable cause, and specific problem. The same principle is used for alert types as for alarm types.</description>
+      <domainExtension domain="SgsnMme">
+        <extension name="accessType" value="INHERIT"/>
+        <extension name="smTag" value="INHERIT"/>
+        <extension name="isVolatile" value="false"/>
+        <extension name="isInternal" value="false"/>
+        <extension name="isAssociation" value="false"/>
+      </domainExtension>
+      <systemCreated/>
+      <attribute name="fmAlarmTypeId">
+        <description>The value component of the RDN.</description>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="fati"/>
+        </domainExtension>
+        <mandatory/>
+        <noNotification/>
+        <restricted/>
+        <key/>
+        <dataType>
+          <string/>
+        </dataType>
+      </attribute>
+      <attribute name="majorType">
+        <description>The attributes majorType and minorType are the two key attributes used to identify the alarm type.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="mat"/>
+        </domainExtension>
+        <noNotification/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <uint32/>
+        </dataType>
+      </attribute>
+      <attribute name="minorType">
+        <description>The attributes majorType and minorType are the two key attributes used to identify the alarm type.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="mit"/>
+        </domainExtension>
+        <noNotification/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <uint32/>
+        </dataType>
+      </attribute>
+      <attribute name="moClasses">
+        <description>A list of the Managed Object classes that can raise this alarm type.
+This attribute contains a comma seperated list of Managed Object classes types that use this alarm type. It is for information only.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="moc"/>
+        </domainExtension>
+        <noNotification/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <string>
+            <defaultValue/>
+          </string>
+        </dataType>
+        <deprecated/>
+        <statusInformation>This attribute has no purpose and is not used by anyone.</statusInformation>
+      </attribute>
+      <attribute name="specificProblem">
+        <description>Provides further refinement to the information given by probableCause.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="sp"/>
+        </domainExtension>
+        <noNotification/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <string/>
+        </dataType>
+      </attribute>
+      <attribute name="eventType">
+        <description>The general category for the alarm.
+The allowed values are defined by ITU-T X.733.&#13;
+</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="et"/>
+        </domainExtension>
+        <noNotification/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <enumRef name="EventType">
+            <mimName>SgsnMmeFM</mimName>
+          </enumRef>
+        </dataType>
+      </attribute>
+      <attribute name="probableCause">
+        <description>Qualifies and provides further information on the reason for the event.
+A standard set of probableCause values is provided in the ERICSSON-ALARM-PC-MIB.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="pc"/>
+        </domainExtension>
+        <noNotification/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <derivedDataTypeRef name="ProbableCause">
+            <mimName>SgsnMmeFM</mimName>
+          </derivedDataTypeRef>
+        </dataType>
+      </attribute>
+      <attribute name="isStateful">
+        <description>Indicates whether the alarm type represents an alarm (has a state) or an alert (has no state).
+true indicates an alarm and false indicates an alert.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="is"/>
+        </domainExtension>
+        <noNotification/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <boolean/>
+        </dataType>
+      </attribute>
+      <attribute name="additionalText">
+        <description>Extra information that would not be contained by other FmAlarmType attributes. </description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="at"/>
+        </domainExtension>
+        <noNotification/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <string/>
+        </dataType>
+      </attribute>
+      <attribute name="configuredSeverity">
+        <description>Gives the possibility to configure the severity for a certain alarm type.
+If set, this value overrides the severity provided by the alarming object. Setting this attribute has no impact on existing alarms, only new and updated ones.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="cs"/>
+        </domainExtension>
+        <isNillable/>
+        <dataType>
+          <enumRef name="SeverityLevel">
+            <mimName>SgsnMmeFM</mimName>
+          </enumRef>
+        </dataType>
+      </attribute>
+      <attribute name="defaultSeverity">
+        <description>The default severity of the alarm type.
+The value indicates the severity for all alarms of this type. No value indicates that there is no fixed severity and that the severity is decided by the alarming object depending on the fault.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="ds"/>
+        </domainExtension>
+        <noNotification/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <enumRef name="SeverityLevel">
+            <mimName>SgsnMmeFM</mimName>
+          </enumRef>
+        </dataType>
+      </attribute>
+      <attribute name="description">
+        <description>.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="des"/>
+        </domainExtension>
+        <noNotification/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <string/>
+        </dataType>
+        <preliminary/>
+      </attribute>
+      <attribute name="causeRaise">
+        <description>.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="cr"/>
+        </domainExtension>
+        <noNotification/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <string/>
+        </dataType>
+        <preliminary/>
+      </attribute>
+      <attribute name="consequence">
+        <description>.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="co"/>
+        </domainExtension>
+        <noNotification/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <string/>
+        </dataType>
+        <preliminary/>
+      </attribute>
+      <attribute name="action">
+        <description>.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="a"/>
+        </domainExtension>
+        <noNotification/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <string/>
+        </dataType>
+        <preliminary/>
+      </attribute>
+      <attribute name="related">
+        <description>.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="re"/>
+        </domainExtension>
+        <noNotification/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <string/>
+        </dataType>
+        <preliminary/>
+      </attribute>
+      <attribute name="causeClear">
+        <description>.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="cc"/>
+        </domainExtension>
+        <noNotification/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <string/>
+        </dataType>
+        <preliminary/>
+      </attribute>
+      <attribute name="area">
+        <description>.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="ar"/>
+        </domainExtension>
+        <noNotification/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <string/>
+        </dataType>
+        <preliminary/>
+      </attribute>
+      <attribute name="oldSeverity">
+        <description>.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="os"/>
+        </domainExtension>
+        <noNotification/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <string/>
+        </dataType>
+        <preliminary/>
+      </attribute>
+      <attribute name="opiDocumentNumber">
+        <description>.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="opi"/>
+        </domainExtension>
+        <noNotification/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <string/>
+        </dataType>
+        <preliminary/>
+      </attribute>
+      <attribute name="validFor">
+        <description>.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="vf"/>
+        </domainExtension>
+        <noNotification/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <string/>
+        </dataType>
+        <preliminary/>
+      </attribute>
+      <attribute name="validForHardware">
+        <description>.</description>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="vfh"/>
+        </domainExtension>
+        <readOnly/>
+        <dataType>
+          <sequence>
+            <derivedDataTypeRef name="Hardware">
+              <mimName>SgsnMmeFM</mimName>
+            </derivedDataTypeRef>
+            <minLength>1</minLength>
+            <nonUnique/>
+            <seqDefaultValue>
+              <defaultValue>mkviii</defaultValue>
+              <defaultValue>mkx</defaultValue>
+              <defaultValue>virtual</defaultValue>
+            </seqDefaultValue>
+          </sequence>
+        </dataType>
+        <preliminary/>
+      </attribute>
+    </class>
+    <class name="FmAlarm">
+      <description>An FmAlarm instance represents an active alarm.
+An alarm is a persistent indication of a fault that clears only when the triggering condition has been resolved.&#13;
+</description>
+      <domainExtension domain="SgsnMme">
+        <extension name="accessType" value="INHERIT"/>
+        <extension name="smTag" value="INHERIT"/>
+        <extension name="isVolatile" value="false"/>
+        <extension name="isInternal" value="false"/>
+        <extension name="isAssociation" value="false"/>
+      </domainExtension>
+      <systemCreated/>
+      <attribute name="fmAlarmId">
+        <description>The value component of the RDN.</description>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="fai"/>
+        </domainExtension>
+        <mandatory/>
+        <noNotification/>
+        <restricted/>
+        <key/>
+        <dataType>
+          <string/>
+        </dataType>
+      </attribute>
+      <attribute name="source">
+        <description>The distinguished name of the alarming object.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="sou"/>
+        </domainExtension>
+        <noNotification/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <string/>
+        </dataType>
+      </attribute>
+      <attribute name="lastEventTime">
+        <description>The timestamp of when the alarm was last updated.
+This is set at alarm information change or severity change.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="levt"/>
+        </domainExtension>
+        <noNotification/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <derivedDataTypeRef name="DateTime">
+            <mimName>SgsnMmeFM</mimName>
+          </derivedDataTypeRef>
+        </dataType>
+      </attribute>
+      <attribute name="sequenceNumber">
+        <description>A unique identity for every notification sent.
+This identity changes at every notification, that is, severity change and information change. It is not the same as the fmAlarmId as multiple notifications may be sent for one alarm instance.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="sn"/>
+        </domainExtension>
+        <noNotification/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <int64/>
+        </dataType>
+      </attribute>
+      <attribute name="activeSeverity">
+        <description>The perceived severity of the alarm.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="as"/>
+        </domainExtension>
+        <noNotification/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <enumRef name="SeverityLevel">
+            <mimName>SgsnMmeFM</mimName>
+          </enumRef>
+        </dataType>
+      </attribute>
+      <attribute name="additionalText">
+        <description>Extra information about the alarm.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="at"/>
+        </domainExtension>
+        <noNotification/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <string/>
+        </dataType>
+      </attribute>
+      <attribute name="majorType">
+        <description>The attributes majorType and minorType are the two key attributes used to identify the alarm type.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="mat"/>
+        </domainExtension>
+        <noNotification/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <uint32/>
+        </dataType>
+      </attribute>
+      <attribute name="minorType">
+        <description>The attributes majorType and minorType are the two key attributes used to identify the alarm type.  </description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="mit"/>
+        </domainExtension>
+        <noNotification/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <uint32/>
+        </dataType>
+      </attribute>
+      <attribute name="specificProblem">
+        <description>Provides further refinement to the information given by probableCause.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="sp"/>
+        </domainExtension>
+        <noNotification/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <string/>
+        </dataType>
+      </attribute>
+      <attribute name="eventType">
+        <description>The general category for the alarm.
+The allowed values are defined by ITU-T X.733.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="et"/>
+        </domainExtension>
+        <noNotification/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <enumRef name="EventType">
+            <mimName>SgsnMmeFM</mimName>
+          </enumRef>
+        </dataType>
+      </attribute>
+      <attribute name="probableCause">
+        <description>Qualifies and provides further information on the reason for the event.
+A standard set of probableCause values is provided in the ERICSSON-ALARM-PC-MIB.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="pc"/>
+        </domainExtension>
+        <noNotification/>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <derivedDataTypeRef name="ProbableCause">
+            <mimName>SgsnMmeFM</mimName>
+          </derivedDataTypeRef>
+        </dataType>
+      </attribute>
+      <attribute name="additionalInfo">
+        <description>Further information about the problem.
+The information is represented as a set of data structures with two items of information, an identifier and a problem description. This is typically used to provide information referred to by the OPI.</description>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="ai"/>
+        </domainExtension>
+        <noNotification/>
+        <readOnly/>
+        <dataType>
+          <sequence>
+            <structRef name="AdditionalInformation">
+              <mimName>SgsnMmeFM</mimName>
+            </structRef>
+            <minLength>0</minLength>
+          </sequence>
+        </dataType>
+      </attribute>
+      <attribute name="originalEventTime">
+        <description>The timestamp when the alarm was raised.
+This attribute is set when the alarm is raised and will not change during the alarm's lifetime.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="oet"/>
+        </domainExtension>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <derivedDataTypeRef name="DateTime">
+            <mimName>SgsnMmeFM</mimName>
+          </derivedDataTypeRef>
+        </dataType>
+      </attribute>
+      <attribute name="originalSeverity">
+        <description>The perceived severity level set when the alarm was raised.
+This attribute is set when the alarm is raised and will not change during the alarm's lifetime.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="os"/>
+        </domainExtension>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <enumRef name="SeverityLevel">
+            <mimName>SgsnMmeFM</mimName>
+          </enumRef>
+        </dataType>
+      </attribute>
+      <attribute name="originalAdditionalText">
+        <description>The additional text set when the alarm was raised.
+This attribute is set when the alarm is raised and will not change during the alarm's lifetime.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <domainExtension domain="SgsnMme">
+          <extension name="isInternal" value="false"/>
+          <extension name="isSystemCreated" value="false"/>
+          <extension name="isVolatile" value="false"/>
+          <extension name="cliOperand" value="oat"/>
+        </domainExtension>
+        <readOnly/>
+        <isNillable/>
+        <dataType>
+          <string/>
+        </dataType>
+      </attribute>
+    </class>
+    <relationship name="Fm_to_FmAlarmModel">
+      <containment>
+        <parent>
+          <hasClass name="Fm">
+            <mimName>SgsnMmeFM</mimName>
+          </hasClass>
+        </parent>
+        <child>
+          <hasClass name="FmAlarmModel">
+            <mimName>SgsnMmeFM</mimName>
+          </hasClass>
+          <cardinality>
+            <min>0</min>
+          </cardinality>
+        </child>
+      </containment>
+    </relationship>
+    <relationship name="FmAlarmModel_to_FmAlarmType">
+      <containment>
+        <parent>
+          <hasClass name="FmAlarmModel">
+            <mimName>SgsnMmeFM</mimName>
+          </hasClass>
+        </parent>
+        <child>
+          <hasClass name="FmAlarmType">
+            <mimName>SgsnMmeFM</mimName>
+          </hasClass>
+          <cardinality>
+            <min>0</min>
+          </cardinality>
+        </child>
+      </containment>
+    </relationship>
+    <relationship name="Fm_to_FmAlarm">
+      <containment>
+        <parent>
+          <hasClass name="Fm">
+            <mimName>SgsnMmeFM</mimName>
+          </hasClass>
+        </parent>
+        <child>
+          <hasClass name="FmAlarm">
+            <mimName>SgsnMmeFM</mimName>
+          </hasClass>
+          <cardinality>
+            <min>0</min>
+          </cardinality>
+        </child>
+      </containment>
+    </relationship>
+  </mim>
+  <interMim>
+    <relationship name="SystemFunctions_to_Fm">
+      <containment>
+        <parent>
+          <hasClass name="SystemFunctions">
+            <mimName>SgsnMmeTop</mimName>
+          </hasClass>
+        </parent>
+        <child>
+          <hasClass name="Fm">
+            <mimName>SgsnMmeFM</mimName>
+          </hasClass>
+          <cardinality>
+            <min>1</min>
+            <max>1</max>
+          </cardinality>
+        </child>
+      </containment>
+    </relationship>
+  </interMim>
+</models>

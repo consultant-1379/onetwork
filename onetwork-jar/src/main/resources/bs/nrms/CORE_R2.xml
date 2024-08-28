@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gnm type = "CORE">
+
+ <cellpattern>
+     <cellnumber>1</cellnumber>
+ </cellpattern>
+
+  <mimentry>
+      <mimname>CORE SGSN 15B-WPP-V6</mimname>
+      <mimpercentage>100.0</mimpercentage>
+  </mimentry>
+</gnm>
